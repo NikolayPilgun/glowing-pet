@@ -37,3 +37,265 @@
     --container-padding: 24px;
   }
 }
+/* ============================================
+   УТИЛИТЫ (общие классы, не привязаны к секции)
+   ============================================ */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+/* Скрыто визуально, но доступно скринридерам.
+   НЕ используй display:none — тогда текст пропадёт и для незрячих. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+/* Сброс анимаций для тех, кто отключил движение в ОС */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* ============================================
+   HEADER
+   ============================================ */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-bg-page);
+  border-block-end: 1px solid var(--color-border);
+  transition:
+    box-shadow var(--transition-normal),
+    background-color var(--transition-normal);
+}
+/* Модификатор, который JS навесит при скролле */
+
+.header--scrolled {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 72px;
+}
+/* ---------- ЛОГОТИП ---------- */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  font-size: 1.375rem;
+  letter-spacing: -0.02em;
+  color: var(--font-main);
+  flex-shrink: 0;
+}
+.logo__accent {
+  color: var(--color-primary);
+}
+.logo__icon {
+  color: var(--color-primary);
+  transform: rotate(-12deg);
+  transition: transform var(--transition-normal);
+}
+.logo:hover .logo__icon {
+  transform: rotate(0deg) scale(1.1);
+}
+/* ---------- НАВИГАЦИЯ ---------- */
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.nav__link {
+  position: relative;
+  display: inline-block;
+  padding-block: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+/* Подчёркивание растёт из центра — приём вместо банального text-decoration */
+.nav__link::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-full);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--transition-normal);
+}
+.nav__link:hover,
+.nav__link--active {
+  color: var(--color-text-main);
+}
+.nav__link:hover::after,
+.nav__link--active::after {
+  transform: scaleX(1);
+}
+/* ---------- КОРЗИНА ---------- */
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.cart {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  color: var(--font-main);
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+.cart:hover {
+  background-color: rgba(247, 148, 29, 0.1);
+  color: var(--color-primary);
+}
+.cart__badge {
+  position: absolute;
+  top: 4px;
+  inset-inline-end: 2px;
+  min-width: 18px;
+  height: 18px;
+  padding-inline: 5px;
+  display: grid;
+  place-items: center;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-bg-page);
+}
+/* ---------- БУРГЕР (виден только на мобильном) ---------- */
+.burger {
+  display: none;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  transition: background-color var(--transition-fast);
+}
+.burger:hover {
+  background-color: rgba(247, 148, 29, 0.1);
+}
+.burger__line {
+  position: absolute;
+  inset-inline-start: 50%;
+  width: 22px;
+  height: 2px;
+  margin-inline-start: -11px;
+  background-color: var(--color-text-main);
+  border-radius: var(--radius-full);
+  transition:
+    transform var(--transition-normal),
+    opacity var(--transition-fast);
+}
+.burger__line:nth-child(1) {
+  top: 15px;
+}
+.burger__line:nth-child(2) {
+  top: 20px;
+}
+.burger__line:nth-child(2) {
+  top: 28px;
+}
+/* Состояние «меню открыто»: полоски превращаются в крестик */
+.burger.is-active .burger__line:nth-child(1) {
+  transform: translateY(0px) rotate(45deg);
+  top: 20px;
+}
+.burger.is-active .burger__line:nth-child(2) {
+  opacity: 0;
+}
+.burger.is-active .burger__line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+  top: 27px;
+}
+/* ============================================
+   HEADER — АДАПТИВ
+   ============================================ */
+/* Планшет и мобильный: показываем бургер, меню — в оверлее */
+@media (max-width: 991px) {
+  .burger {
+    display: block;
+  }
+  /* Меню превращается в выпадающую панель */
+  .header__nav {
+    position: fixed;
+    inset-block-start: 72px;
+    inset-inline: 0;
+    background-color: var(--color-bg-page);
+    border-block-end: 1px solid var(--color-border);
+    padding: 16px var(--container-padding) 24px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    /* Скрыто: уезжает вверх и не мешает кликам */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px);
+    transition:
+      opacity var(--transition-normal),
+      transform var(--transition-normal),
+      visibility var(--transition-normal);
+  }
+  /* Модификатор открытого меню */
+  .header__nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .nav__list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .nav__link {
+    display: block;
+    padding-block: 14px;
+    font-size: 1.06rem;
+  }
+  /* На мобиле подчёркивание не нужно */
+  .nav__link::after {
+    display: none;
+  }
+  .nav__link--active {
+    color: var(--color-primary);
+  }
+}
+/* Десктоп: увеличиваем высоту и отступы */
+@media (min-width: 992px) {
+  .header__inner {
+    min-height: 88px;
+  }
+  .logo {
+    font-size: 1.5rem;
+  }
+}

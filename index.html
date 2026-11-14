@@ -24,7 +24,76 @@
   <body>
     <!-- 1. ШАПКА САЙТА (HEADER) -->
     <header class="header" id="header">
-      <!-- Сюда пойдем на следующем шаге -->
+      <div class="container header__inner">
+        <!-- Логотип -->
+        <a href="#hero" class="header__logo logo" aria-label="Glowing Pet — на главную">
+          <span class="logo__text">Glowing<span class="logo__accent">Pet</span></span>
+          <svg
+            class="logo__icon"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <!-- Иконка лапки -->
+            <path
+              d="M12 13c-2.5 0-5 2.2-5 4.6 0 1.9 1.6 2.9 3.2 2.9 1 0 1.3-.3 1.8-.3s.8.3 1.8.3c1.6 0 3.2-1 3.2-2.9C17 15.2 14.5 13 12 13Z"
+              fill="currentColor"
+            />
+            <ellipse cx="6.2" cy="9.4" rx="1.7" ry="2.2" fill="currentColor" />
+            <ellipse cx="9.8" cy="6.4" rx="1.7" ry="2.3" fill="currentColor" />
+            <ellipse cx="14.2" cy="6.4" rx="1.7" ry="2.3" fill="currentColor" />
+            <ellipse cx="17.8" cy="9.4" rx="1.7" ry="2.2" fill="currentColor" />
+          </svg>
+        </a>
+        <!-- Навигация -->
+        <nav class="header__nav nav" id="nav" aria-label="Основная навигация">
+          <ul class="nav__list">
+            <li class="nav__item"><a href="#hero" class="nav__link nav__link--active">Home</a></li>
+            <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+            <li class="nav__item"><a href="#products" class="nav__link">Products</a></li>
+            <li class="nav__item"><a href="#footer" class="nav__link">Contact</a></li>
+          </ul>
+        </nav>
+        <!-- Действия: корзина + бургер -->
+        <div class="header__actions">
+          <button class="cart" type="button" aria-label="Корзина, товаров: 2">
+            <svg
+              class="cart__icon"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <circle cx="10" cy="20" r="1.4" fill="currentColor" />
+              <circle cx="18" cy="20" r="1.4" fill="currentColor" />
+            </svg>
+            <span class="cart__badge" id="cart-count">2</span>
+          </button>
+          <button
+            class="burger"
+            id="burger"
+            type="button"
+            aria-label="Открыть меню"
+            aria-expanded="false"
+            aria-controls="nav"
+          >
+            <span class="burger__line"></span>
+            <span class="burger__line"></span>
+            <span class="burger__line"></span>
+          </button>
+        </div>
+      </div>
     </header>
 
     <!-- ОСНОВНОЙ КОНТЕНТ СТРАНИЦЫ -->
