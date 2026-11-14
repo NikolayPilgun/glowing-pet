@@ -1,0 +1,39 @@
+/* css/variables.css */
+:root {
+  /* Цветовая палитра */
+  --color-primary: #f7941d;
+  --color-primary-hover: #e07e0a;
+  --color-text-main: #1e1e1e;
+  --color-text-muted: #6c6c6c;
+  --color-bg-page: #fdfbf8;
+  --color-bg-card: #ffffff;
+  --color-border: #ece7e1;
+  --color-star: #ffb800;
+
+  /* Типографика */
+  --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+  /* Отступы и размеры */
+  --container-max-width: 1200px;
+  --container-padding: 16px;
+
+  /* Закругления */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  /* Тени */
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 15px 35px rgba(247, 148, 29, 0.15);
+
+  /* Плавность переходов */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --container-padding: 24px;
+  }
+}
