@@ -99,9 +99,55 @@
     <!-- ОСНОВНОЙ КОНТЕНТ СТРАНИЦЫ -->
     <main>
       <!-- 2. ГЛАВНЫЙ ЭКРАН (HERO) -->
-      <section class="hero" id="hero"></section>
+      <section class="hero" id="hero">
+        <div class="container hero__inner">
+          <!-- Левая колонка: текст -->
+          <div class="hero__content">
+            <span class="hero__badge">Best Pet Shop</span>
+            <h1 class="hero__title">
+              Best Products For Your <span class="hero__title-accent">Furry Friends</span>
+            </h1>
+            <p class="hero__text">
+              Everything your pet needs — quality food, toys and care products, delivered straight
+              to your door with love and attention.
+            </p>
+            <a href="#products" class="btn btn--primary hero__cta"
+              >Explore Products
+              <svg
+                class="btn__icon"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  d="M5 12h14M13 6l6 6-6 6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+          <!-- Правая колонка: картинка -->
+          <div class="hero__media">
+            <img
+              class="hero__img"
+              src="assets/images/hero-dog.png"
+              alt="Весёлый корги смотрит в камеру"
+              width="640"
+              height="640"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </div>
+        </div>
+      </section>
 
-      <!-- 3. КАТАЛОГ ТОВАРОВ (PRODUCTS) -->
       <section class="products" id="products"></section>
     </main>
 
