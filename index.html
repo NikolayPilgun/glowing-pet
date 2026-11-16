@@ -147,8 +147,35 @@
           </div>
         </div>
       </section>
-
-      <section class="products" id="products"></section>
+      <!-- 3. КАТАЛОГ ТОВАРОВ (PRODUCTS) -->
+      <section class="products" id="products">
+        <div class="container">
+          <!-- Шапка секции -->
+          <div class="products__head">
+            <h2 class="section-title">Best Selling Products</h2>
+            <div class="products__filters" role="group" aria-label="Фильтр товаров по категории">
+              <button class="filter is-active" type="button" data-filter="all" aria-pressed="true">
+                All
+              </button>
+              <button class="filter" type="button" data-filter="dogs" aria-pressed="false">
+                Dogs
+              </button>
+              <button class="filter" type="button" data-filter="cats" aria-pressed="false">
+                Cats
+              </button>
+              <button class="filter" type="button" data-filter="birds" aria-pressed="false">
+                Birds
+              </button>
+            </div>
+          </div>
+          <!-- Сетка товаров. Заполняется через JS -->
+          <ul class="products__grid" id="products-grid"></ul>
+          <!-- Сообщение, если фильтр не дал результатов -->
+          <p class="products__empty" id="products-empty" hidden>
+            В этой категории пока нет товаров.
+          </p>
+        </div>
+      </section>
     </main>
 
     <!-- 4. ПОДВАЛ (FOOTER) -->
