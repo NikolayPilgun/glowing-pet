@@ -238,5 +238,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   renderProducts(); // первый рендер при загрузке
 
+  /* ============================================
+     4. ПОЯВЛЕНИЕ СЕКЦИЙ ПРИ СКРОЛЛЕ
+     ============================================ */
+
+  const revealTargets = document.querySelectorAll(
+    '.about__media, .about__content, .benefits__item',
+  );
+
+  if (revealTargets.length && 'IntersectionObserver' in window) {
+    revealTargets.forEach((el) => el.classList.add('reveal'));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target); // анимируем один раз — экономим ресурсы
+          }
+        });
+      },
+      {
+        threshold: 0.15, // срабатывает, когда видно 15% элемента
+        rootMargin: '0px 0px -40px 0px', // чуть «до» появления в кадре
+      },
+    );
+
+    revealTargets.forEach((el) => observer.observe(el));
+  }
+
   /* ---- Конец ---- */
 });

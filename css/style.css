@@ -97,6 +97,22 @@
 }
 
 /* ============================================
+   БЕЙДЖ (общий компонент)
+   ============================================ */
+
+.badge {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  background-color: rgba(247, 148, 29, 0.12);
+  border-radius: var(--radius-full);
+}
+
+/* ============================================
    УТИЛИТЫ (общие классы, не привязаны к секции)
    ============================================ */
 
@@ -374,16 +390,7 @@
 }
 /* ---------- Левая колонка ---------- */
 .hero__badge {
-  display: inline-block;
-  padding: 8px 16px;
   margin-block-end: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-primary);
-  background-color: rgba(247, 148, 29, 0.12);
-  border-radius: var(--radius-full);
 }
 .hero__title {
   font-size: clamp(2rem, 5.5vw, 3.5rem);
@@ -658,5 +665,158 @@
 @media (min-width: 1280px) {
   .products__grid {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+/* ============================================
+   ABOUT / BENEFITS
+   ============================================ */
+.about {
+  padding-block: 80px;
+  background-color: var(--color-bg-page);
+}
+.about__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+
+.about__badge {
+  margin-block-end: 16px;
+}
+/* ---------- Фото ---------- */
+.about__media {
+  position: relative;
+}
+/* Декоративный акцент за фото */
+.about__media::after {
+  content: '';
+  position: absolute;
+  inset-block-end: -16px;
+  inset-inline-start: -16px;
+  width: 60%;
+  height: 60%;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-lg);
+  opacity: 0.15;
+  z-index: 0;
+}
+.about__img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 6 / 7;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  background-color: #f7f5f0;
+}
+/* ---------- Текст ---------- */
+.about__title {
+  margin-block-end: 16px;
+}
+.about__text {
+  max-width: 52ch;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  text-wrap: pretty;
+  margin-block-end: 32px;
+}
+/* ---------- Список преимуществ ---------- */
+
+.benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.benefits__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.benefits__icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  color: var(--color-primary);
+  background-color: rgba(247, 148, 29, 0.12);
+  border-radius: var(--radius-md);
+}
+.benefits__title {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--color-text-main);
+  margin-block-end: 4px;
+}
+.benefits__text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  text-wrap: pretty;
+}
+/* ============================================
+   ABOUT — АДАПТИВ
+   ============================================ */
+
+@media (min-width: 768px) {
+  .about__img {
+    max-width: 480px;
+    margin-inline: auto;
+  }
+  .about__media {
+    display: flex;
+    justify-content: center;
+  }
+}
+@media (min-width: 992px) {
+  /* Асимметричные две колонки: картинка чуть крупнее текста */
+  .about__inner {
+    grid-template-columns: 1fr 1.1fr;
+  }
+
+  .about__media {
+    display: block;
+  }
+
+  .about__img {
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  .about__media::after {
+    display: block;
+  }
+
+  .about__text {
+    font-size: 1.125rem;
+  }
+
+  .benefits {
+    gap: 28px;
+  }
+}
+/* Появление при скролле — база */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Уважаем настройку «уменьшить движение» */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
