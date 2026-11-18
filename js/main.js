@@ -267,5 +267,14 @@ document.addEventListener('DOMContentLoaded', () => {
     revealTargets.forEach((el) => observer.observe(el));
   }
 
+  /* ============================================
+     5. АКТУАЛЬНЫЙ ГОД В КОПИРАЙТЕ
+     ============================================ */
+
+  const yearEl = document.getElementById('year');
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
+
   /* ---- Конец ---- */
 });

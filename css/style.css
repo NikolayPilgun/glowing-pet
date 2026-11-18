@@ -39,6 +39,22 @@
     --container-padding: 24px;
   }
 }
+/* Компенсация высоты фиксированной шапки при переходе по якорю */
+#hero,
+#about,
+#products,
+#footer {
+  scroll-margin-top: var(--header-height, 72px);
+}
+
+@media (min-width: 992px) {
+  #hero,
+  #about,
+  #products,
+  #footer {
+    scroll-margin-top: var(--header-height, 88px);
+  }
+}
 /* ============================================
    КНОПКА (базовый компонент)
    ============================================ */
@@ -818,5 +834,130 @@
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  padding-block-start: clamp(48px, 7vw, 80px);
+  background-color: var(--color-text-main);
+  color: #ffffff;
+}
+/* ---------- Верх: колонки ---------- */
+.footer__top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  padding-block-end: clamp(32px, 5vw, 56px);
+}
+/* ---------- Бренд ---------- */
+.footer__logo {
+  color: #ffffff;
+  margin-block-end: 16px;
+}
+.footer__logo .logo__accent {
+  color: var(--color-primary);
+}
+.footer__desc {
+  max-width: 34ch;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.65);
+  margin-block-end: 20px;
+  text-wrap: pretty;
+}
+/* ---------- Соцсети ---------- */
+.socials {
+  display: flex;
+  gap: 10px;
+}
+.socials__link {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  color: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-full);
+  transition:
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+.socials__link:hover {
+  color: #ffffff;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+/* ---------- Навигационные колонки ---------- */
+.footer__heading {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  margin-block-end: 16px;
+}
+.footer__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.footer__link {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.65);
+  transition: color var(--transition-fast);
+}
+.footer__link:hover {
+  color: var(--color-primary);
+}
+
+.footer__address {
+  font-style: normal;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.65);
+}
+/* ---------- Низ ---------- */
+.footer__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-block: 24px;
+  border-block-start: 1px solid rgba(255, 255, 255, 0.12);
+}
+.footer__copy {
+  font-size: 0.87rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+.footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+/* ============================================
+   FOOTER — АДАПТИВ
+   ============================================ */
+@media (min-width: 600px) {
+  /* Планшет: 2 колонки, бренд занимает всю ширину */
+  .footer__top {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 32px;
+  }
+}
+@media (min-width: 992px) {
+  /* Десктоп: 4 колонки, бренд — первая */
+  .footer__top {
+    grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+    gap: 48px;
+  }
+  .footer__brand {
+    grid-column: auto;
+  }
+  .footer__bottom {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
 }
