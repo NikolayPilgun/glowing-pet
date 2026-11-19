@@ -961,3 +961,148 @@
     justify-content: space-between;
   }
 }
+/* ============================================
+   Pet Section
+   ============================================ */
+/* ============================================================
+   1. Секция
+   ============================================================ */
+.pet-section {
+  padding-block: clamp(40px, 6vw, 96px);
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.pet-section__inner {
+  position: relative;
+  display: grid;
+  /* одна ячейка: текст и картинка накладываются друг на друга */
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  align-items: start;
+}
+
+/* ============================================================
+   2. Наложение слоёв
+   ============================================================ */
+.pet-section__content,
+.pet-section__media {
+  grid-area: 1 / 1;
+  min-width: 0;
+}
+
+/* Картинка — нижний слой */
+.pet-section__media {
+  z-index: 1;
+  margin: 0;
+  width: 62%;
+  margin-left: auto; /* прижата вправо */
+  align-self: end;
+}
+
+.pet-section__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Текст — верхний слой */
+.pet-section__content {
+  z-index: 2;
+  max-width: 52%;
+  padding-block: clamp(24px, 5vw, 64px);
+  pointer-events: none; /* не перехватываем клики по фото */
+}
+
+.pet-section__content a,
+.pet-section__content button {
+  pointer-events: auto;
+}
+
+/* ============================================================
+   3. Заголовок
+   ============================================================ */
+.pet-section__title {
+  margin: 0 0 24px;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(40px, 7vw, 96px);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  color: #111111;
+}
+
+.pet-section__title-accent {
+  color: #ffd21f;
+}
+
+.pet-section__sparkles {
+  width: 0.3em;
+  height: 0.3em;
+  margin-left: 0.08em;
+  vertical-align: top;
+  transform: translateY(0.08em);
+  color: #ffd21f;
+}
+
+/* ============================================================
+   4. Абзац
+   ============================================================ */
+.pet-section__text {
+  max-width: 42ch;
+  margin: 0;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: clamp(15px, 1.1vw, 18px);
+  font-weight: 500;
+  line-height: 1.5;
+  color: #111111;
+  text-wrap: pretty;
+}
+
+/* ============================================================
+   5. Планшет
+   ============================================================ */
+@media (max-width: 1024px) {
+  .pet-section__media {
+    width: 76%;
+  }
+
+  .pet-section__content {
+    max-width: 100%;
+  }
+
+  .pet-section__text {
+    max-width: 46ch;
+  }
+}
+
+/* ============================================================
+   6. Мобильные — наложение выключаем
+   ============================================================ */
+@media (max-width: 640px) {
+  .pet-section__inner {
+    grid-template-rows: auto auto;
+    row-gap: 24px;
+    align-items: stretch;
+  }
+
+  .pet-section__content,
+  .pet-section__media {
+    grid-area: auto;
+    max-width: 100%;
+    z-index: auto;
+  }
+
+  .pet-section__content {
+    padding-block: 0;
+  }
+
+  .pet-section__media {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .pet-section__text {
+    max-width: 100%;
+  }
+}
