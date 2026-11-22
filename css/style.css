@@ -1189,3 +1189,294 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+/* ============================================================
+    Отзывы
+   ============================================================ */
+.reviews {
+  position: relative;
+  padding: 80px 0 96px;
+  background-color: var(--color-bg-page);
+  overflow: hidden;
+}
+.reviews__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: 40px;
+  padding: 0 24px;
+}
+/* ---------- Текстовая часть ---------- */
+.reviews__eyebrow {
+  margin: 0 0 12px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-primary);
+}
+.reviews__title {
+  margin: 0 0 40px;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #23262b;
+}
+/* ---------- Слайдер ---------- */
+.reviews-slider {
+  position: relative;
+  max-width: 560px;
+}
+.reviews-slider__viewport {
+  overflow: hidden;
+}
+.reviews-slider__track {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
+}
+.review-card {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+.review-card__inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+}
+.review-card__avatar {
+  flex: 0 0 auto;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #e6e6e6;
+}
+.review-card__body {
+  min-width: 0;
+}
+.review-card__name {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #23262b;
+}
+/* ---------- Рейтинг ---------- */
+.review-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+.review-card__score {
+  margin-left: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #23262b;
+}
+.rating-star {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px 20px;
+}
+/* Звезда целиком: SVG-маска для чёткости на всех DPR */
+.rating-star--full,
+.rating-star--half,
+.rating-star--empty {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.6l2.9 6.1 6.7.9-4.9 4.7 1.2 6.6L12 17.8 6.1 20.9l1.2-6.6L2.4 9.6l6.7-.9z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.6l2.9 6.1 6.7.9-4.9 4.7 1.2 6.6L12 17.8 6.1 20.9l1.2-6.6L2.4 9.6l6.7-.9z'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+.rating-star--full {
+  background-color: #f8c928;
+}
+.rating-star--empty {
+  background-color: #dcdcdc;
+}
+.rating-star--half {
+  background-color: #dcdcdc;
+}
+/* Половина заливки — второй слой поверх серой звезды */
+.rating-star--half::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 50%;
+  background-color: #f8c928;
+  -webkit-mask-repeat: inherit;
+  mask-repeat: inherit;
+  -webkit-mask-position: inherit;
+  mask-position: inherit;
+  -webkit-mask-size: inherit;
+  mask-size: inherit;
+}
+/* ---------- Цитата ---------- */
+.review-card__quote {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.62;
+  color: #3d4149;
+}
+.review-card__quote p {
+  margin: 0;
+}
+.review-card__quote p::before {
+  content: '\201C';
+}
+.review-card__quote p::after {
+  content: '\201D';
+}
+/* ---------- Навигация ---------- */
+.reviews-slider__nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 40px;
+}
+.reviews-slider__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: 0;
+  border-radius: 16px;
+  background-color: #ffffff;
+  color: #23262b;
+  box-shadow: 0 10px 24px rgba(16, 21, 30, 0.12);
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+.reviews-slider__arrow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(16, 21, 30, 0.16);
+}
+.reviews-slider__arrow:active {
+  transform: translateY(0px);
+}
+
+.reviews-slider__arrow:focus-visible {
+  outline: 3px solid #f5d631;
+  outline-offset: 2px;
+}
+.reviews-slider__icon {
+  width: 22px;
+  height: 22px;
+}
+.reviews-slider__thumbs {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.reviews-slider__thumb {
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background-color: #e6e6e6;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.6;
+  transition:
+    opacity 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+.reviews-slider__thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.reviews-slider__thumb:hover {
+  opacity: 0.85;
+}
+.reviews-slider__thumb.is-active {
+  opacity: 1;
+  box-shadow:
+    0 0 0 3px #ffffff,
+    0 8px 20px rgba(16, 21, 30, 0.16);
+}
+
+.reviews-slider__thumb:focus-visible {
+  outline: 3px solid #f5d631;
+  outline-offset: 3px;
+}
+/* ---------- Изображение ---------- */
+.reviews__media {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.reviews__image {
+  display: block;
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+}
+/* ---------- Адаптив ---------- */
+@media (max-width: 1024px) {
+  .reviews__inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 48px;
+  }
+  .reviews__media {
+    justify-content: center;
+    order: 2;
+  }
+  .reviews__image {
+    max-width: 420px;
+  }
+}
+@media (max-width: 640px) {
+  .reviews {
+    padding: 56px 0 64px;
+  }
+  .reviews__inner {
+    padding: 0 16px;
+  }
+  .reviews__title {
+    margin-bottom: 28px;
+  }
+  .review-card__inner {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .reviews-slider__nav {
+    gap: 8px;
+    margin-top: 28px;
+  }
+  .reviews-slider__arrow {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+  }
+  .reviews-slider__thumbs {
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .reviews-slider__thumbs::webkit-scrollbar {
+    display: none;
+  }
+  .reviews-slider__thumb {
+    width: 48px;
+    height: 48px;
+  }
+}
